@@ -353,6 +353,8 @@ main{padding-top:var(--mobile-header-offset)}
 .field textarea{resize:vertical;min-height:110px}
 .form-note{margin:.25rem 0 0;font-size:.88rem;color:var(--moss-600);min-height:1.2em}
 .form-note.error{color:#B84A3A}
+.botcheck-field{display:none !important}
+.quote-form button[disabled]{opacity:.7;cursor:wait}
 
 /* ============ FOOTER ============ */
 .footer{background:var(--forest-950);color:var(--cream-50);padding-block:var(--space-8) var(--space-6);position:relative;overflow:hidden}
@@ -456,9 +458,15 @@ img,svg{max-width:100%;height:auto}
   .band-inner .btn-primary{width:100%}
   .landlords-text{padding:2rem 1.5rem}
   .landlords-img{min-height:220px}
-  .footer-grid{gap:var(--space-5);padding-bottom:var(--space-5)}
-  .copyright{flex-direction:column;align-items:flex-start;text-align:left}
-  .copyright-links{justify-content:flex-start}
+  .footer-grid{gap:var(--space-5);padding-bottom:var(--space-5);text-align:center}
+  .footer-grid > div{display:flex;flex-direction:column;align-items:center}
+  .footer p{margin-inline:auto}
+  .footer ul{justify-items:center}
+  .footer-cta{align-self:center}
+  .logo-footer{justify-content:center}
+  .copyright{flex-direction:column;align-items:center;text-align:center}
+  .copyright-links{justify-content:center}
+  .site-credit{justify-content:center}
 }
 @media(max-width:420px){
   .logo-mark{width:45px;height:45px}

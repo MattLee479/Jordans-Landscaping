@@ -1,4 +1,4 @@
-// Jordan's Tree Care — static site behaviour
+// Jordan's Tree Care - static site behaviour
 
 (function () {
   'use strict';
@@ -13,15 +13,15 @@
   var menuBtn = document.getElementById('menuToggle');
   var menu = document.getElementById('mobileMenu');
 
-  function syncMobileHeaderOffset() {
+  function syncHeaderOffset() {
     if (!header || !headerInner) return;
     var offset = Math.ceil(headerInner.getBoundingClientRect().height);
     document.documentElement.style.setProperty('--mobile-header-offset', offset + 'px');
   }
 
-  syncMobileHeaderOffset();
-  window.addEventListener('resize', syncMobileHeaderOffset);
-  window.addEventListener('load', syncMobileHeaderOffset);
+  syncHeaderOffset();
+  window.addEventListener('resize', syncHeaderOffset);
+  window.addEventListener('load', syncHeaderOffset);
 
   if (menuBtn && menu) {
     menuBtn.addEventListener('click', function () {
@@ -29,79 +29,112 @@
       menu.setAttribute('data-open', String(!open));
       menu.hidden = open;
       menuBtn.setAttribute('aria-expanded', String(!open));
-      syncMobileHeaderOffset();
+      syncHeaderOffset();
     });
-    // Close after tapping a link
-    menu.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
         menu.setAttribute('data-open', 'false');
         menu.hidden = true;
         menuBtn.setAttribute('aria-expanded', 'false');
-        syncMobileHeaderOffset();
+        syncHeaderOffset();
       });
     });
   }
 
+  // ---- Scroll reveal ----
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          io.unobserve(e.target);
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
     revealEls.forEach(function (el) { io.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  // ---- Quote form -> mailto / phone fallback ----
+  // ---- Quote form -> Web3Forms ----
   var form = document.getElementById('quoteForm');
   var note = document.getElementById('formNote');
-  if (form) {
+
+  if (form && note) {
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var defaultBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
       var name = form.name.value.trim();
       var phone = form.phone.value.trim();
+      var email = form.email.value.trim();
       var location = form.location.value.trim();
-      var service = form.service.value;
+      var service = form.service.value.trim();
       var message = form.message.value.trim();
+      var accessKeyField = form.querySelector('input[name="access_key"]');
+      var accessKey = accessKeyField ? accessKeyField.value.trim() : '';
 
-      if (!name || !phone || !location || !service) {
-        note.textContent = 'Please fill in your name, phone, location and service.';
+      if (!name || !phone || !email || !location || !service) {
+        note.textContent = 'Please fill in your name, phone, email, location and service.';
+        note.classList.add('error');
+        return;
+      }
+
+      if (!accessKey || accessKey === 'PASTE_WEB3FORMS_ACCESS_KEY_HERE') {
+        note.textContent = 'Add your Web3Forms access key first so the form can send.';
         note.classList.add('error');
         return;
       }
 
       note.classList.remove('error');
-      note.textContent = 'Thanks ' + name + " — opening your phone to call Jordan directly is fastest. Otherwise, please call 07437 962198.";
+      note.textContent = 'Sending your quote request...';
 
-      // Build a tel: prompt; honest behaviour — no fake backend submission.
-      var lines = [
-        'Quote request from website',
-        '------------------------------',
-        'Name: ' + name,
-        'Phone: ' + phone,
-        'Location: ' + location,
-        'Service: ' + service,
-        '',
-        'Message:',
-        message || '(none)'
-      ].join('\n');
-
-      // Copy details to clipboard so the user can paste into a text/WhatsApp
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(lines).then(function () {
-          note.textContent = 'Details copied — please call or text Jordan on 07437 962198 and paste them in.';
-        }).catch(function () {});
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
       }
 
-      // Offer to call
-      setTimeout(function () {
-        window.location.href = 'tel:07437962198';
-      }, 600);
+      var formData = new FormData(form);
+      formData.set('name', name);
+      formData.set('phone', phone);
+      formData.set('email', email);
+      formData.set('location', location);
+      formData.set('service', service);
+      formData.set('message', message);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        },
+        body: formData
+      }).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        if (result && result.success) {
+          note.classList.remove('error');
+          note.textContent = 'Thanks ' + name + '. Your quote request has been sent and Jordan will get back to you soon.';
+          form.reset();
+        } else {
+          note.classList.add('error');
+          note.textContent = result && result.message
+            ? result.message
+            : 'Something went wrong sending your request. Please try again.';
+        }
+      }).catch(function () {
+        note.classList.add('error');
+        note.textContent = 'Could not send right now. Please try again in a moment or call 07437 962198.';
+      }).finally(function () {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = defaultBtnHtml;
+        }
+      });
     });
   }
 })();

@@ -235,7 +235,7 @@
       <div class="area-chips">
         <span>Glasgow</span><span>East Kilbride</span><span>Paisley</span><span>Hamilton</span>
         <span>Motherwell</span><span>Cumbernauld</span><span>Stirling</span><span>Falkirk</span>
-        <span>Greenock</span><span>Kilmarnock</span>
+        <span>Greenock</span><span>Kilmarnock</span><span>Edinburgh</span><span>Ayrshire</span>
       </div>
     </div>
     <div class="area-card area-map-card">
@@ -271,7 +271,11 @@
       </a>
     </div>
 
-    <form class="quote-form reveal" id="quoteForm" novalidate>
+    <form class="quote-form reveal" id="quoteForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <input type="hidden" name="access_key" value="PASTE_WEB3FORMS_ACCESS_KEY_HERE">
+      <input type="hidden" name="subject" value="New quote request from Jordan's Tree Care website">
+      <input type="hidden" name="from_name" value="Jordan's Tree Care Website">
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="botcheck-field">
       <div class="field">
         <label for="name">Name</label>
         <input id="name" name="name" type="text" required autocomplete="name">
@@ -282,9 +286,13 @@
           <input id="phone" name="phone" type="tel" required autocomplete="tel">
         </div>
         <div class="field">
-          <label for="location">Location</label>
-          <input id="location" name="location" type="text" placeholder="e.g. Glasgow G12" required>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="e.g. jordansmith@email.com" required autocomplete="email">
         </div>
+      </div>
+      <div class="field">
+        <label for="location">Location</label>
+        <input id="location" name="location" type="text" placeholder="e.g. Glasgow G12" required>
       </div>
       <div class="field">
         <label for="service">Service needed</label>
