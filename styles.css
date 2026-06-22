@@ -309,6 +309,18 @@ main{padding-top:var(--mobile-header-offset)}
 .area-card .area-label{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.15em;font-size:.85rem;color:var(--cream-50);background:rgba(13,31,25,.6);padding:.5rem 1rem;border-radius:var(--radius-pill);border:1px solid var(--border-dark)}
 .area-card .area-label{z-index:4;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 
+/* ============ LOCAL COPY ============ */
+.local-copy{background:linear-gradient(180deg,rgba(255,253,246,.45),rgba(244,240,230,.95))}
+.local-copy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+@media(max-width:900px){.local-copy-grid{grid-template-columns:1fr}}
+.local-copy-card{
+  padding:1.5rem 1.5rem 1.65rem;background:var(--cream-50);
+  border:1px solid var(--border-soft);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-soft);
+}
+.local-copy-card h3{margin-bottom:.55rem;color:var(--forest-950)}
+.local-copy-card p{margin:0;color:var(--text-muted)}
+
 /* ============ QUOTE ============ */
 .quote{background:var(--forest-950);color:var(--cream-50);position:relative;overflow:hidden}
 .quote::before{
@@ -355,6 +367,17 @@ main{padding-top:var(--mobile-header-offset)}
 .form-note.error{color:#B84A3A}
 .botcheck-field{display:none !important}
 .quote-form button[disabled]{opacity:.7;cursor:wait}
+
+/* ============ FAQ ============ */
+.faq-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+@media(max-width:900px){.faq-list{grid-template-columns:1fr}}
+.faq-item{
+  padding:1.5rem;background:var(--cream-50);
+  border:1px solid var(--border-soft);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-soft);
+}
+.faq-item h3{margin-bottom:.55rem;color:var(--forest-950)}
+.faq-item p{margin:0;color:var(--text-muted)}
 
 /* ============ FOOTER ============ */
 .footer{background:var(--forest-950);color:var(--cream-50);padding-block:var(--space-8) var(--space-6);position:relative;overflow:hidden}
