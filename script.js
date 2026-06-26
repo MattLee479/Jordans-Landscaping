@@ -85,6 +85,8 @@
     var defaultBtnHtml = submitBtn ? submitBtn.innerHTML : '';
     var nextField = form.querySelector('input[name="_next"]');
     var nextUrl = nextField ? nextField.value.trim() : '';
+    var formAction = form.getAttribute('action') || '';
+    var ajaxAction = formAction.replace('https://formsubmit.co/', 'https://formsubmit.co/ajax/');
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -118,7 +120,7 @@
       formData.set('service', service);
       formData.set('message', message);
 
-      fetch('https://formsubmit.co/ajax/treetoplandscapes@yahoo.com', {
+      fetch(ajaxAction, {
         method: 'POST',
         headers: {
           Accept: 'application/json'
