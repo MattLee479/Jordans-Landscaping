@@ -83,6 +83,8 @@
   if (form && note) {
     var submitBtn = form.querySelector('button[type="submit"]');
     var defaultBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+    var nextField = form.querySelector('input[name="_next"]');
+    var nextUrl = nextField ? nextField.value.trim() : '';
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -129,6 +131,11 @@
           note.classList.remove('error');
           note.textContent = 'Thanks ' + name + '. Your quote request has been sent and Jordan will get back to you soon.';
           form.reset();
+          if (nextUrl) {
+            window.setTimeout(function () {
+              window.location.href = nextUrl;
+            }, 500);
+          }
         } else {
           note.classList.add('error');
           note.textContent = result && result.message

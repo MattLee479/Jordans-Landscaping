@@ -368,8 +368,9 @@ main{padding-top:var(--mobile-header-offset)}
 .quote-form button[disabled]{opacity:.7;cursor:wait}
 
 /* ============ THANK YOU ============ */
-.thank-you-page{min-height:100vh;display:flex;align-items:center}
-.thank-you-wrap{width:100%}
+.thank-you-body{background:var(--forest-950)}
+.thank-you-page{min-height:100vh;display:flex;align-items:center;padding-block:2rem}
+.thank-you-wrap{width:100%;padding-inline:1rem}
 .thank-you-card{
   max-width:720px;margin:0 auto;
   padding:clamp(2rem,4vw,3rem);
@@ -485,6 +486,7 @@ img,svg{max-width:100%;height:auto}
   }
   .sticky-cta{padding-bottom:calc(.75rem + env(safe-area-inset-bottom))}
   body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+  .thank-you-body{padding-bottom:0}
   .hero{padding-block:var(--space-7)}
   .hero-ctas .btn-primary,.hero-ctas .btn-secondary{flex:1 1 100%}
   .hero-badge{left:auto;right:1rem;bottom:1rem}
@@ -506,6 +508,9 @@ img,svg{max-width:100%;height:auto}
   .logo-mark{width:45px;height:45px}
   .logo-top{font-size:1.2rem}
   .logo-sub{font-size:.78rem;letter-spacing:.18em}
+  .thank-you-page{padding-block:1rem}
+  .thank-you-wrap{padding-inline:.75rem}
+  .thank-you-card{padding:1.75rem 1.25rem}
   .hero-title{font-size:clamp(2.6rem,11vw,3.6rem)}
   .trust-badge{font-size:.75rem;padding:.45rem .7rem}
   .phone-cta strong{font-size:1.3rem}
