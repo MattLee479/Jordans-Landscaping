@@ -76,7 +76,7 @@
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  // ---- Quote form -> Web3Forms ----
+  // ---- Quote form -> FormSubmit ----
   var form = document.getElementById('quoteForm');
   var note = document.getElementById('formNote');
 
@@ -93,17 +93,9 @@
       var location = form.location.value.trim();
       var service = form.service.value.trim();
       var message = form.message.value.trim();
-      var accessKeyField = form.querySelector('input[name="access_key"]');
-      var accessKey = accessKeyField ? accessKeyField.value.trim() : '';
 
       if (!name || !phone || !email || !location || !service) {
         note.textContent = 'Please fill in your name, phone, email, location and service.';
-        note.classList.add('error');
-        return;
-      }
-
-      if (!accessKey || accessKey === 'PASTE_WEB3FORMS_ACCESS_KEY_HERE') {
-        note.textContent = 'Add your Web3Forms access key first so the form can send.';
         note.classList.add('error');
         return;
       }
@@ -124,7 +116,7 @@
       formData.set('service', service);
       formData.set('message', message);
 
-      fetch('https://api.web3forms.com/submit', {
+      fetch('https://formsubmit.co/ajax/treetoplandscapes@yahoo.com', {
         method: 'POST',
         headers: {
           Accept: 'application/json'

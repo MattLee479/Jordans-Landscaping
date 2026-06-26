@@ -365,8 +365,19 @@ main{padding-top:var(--mobile-header-offset)}
 .field textarea{resize:vertical;min-height:110px}
 .form-note{margin:.25rem 0 0;font-size:.88rem;color:var(--moss-600);min-height:1.2em}
 .form-note.error{color:#B84A3A}
-.botcheck-field{display:none !important}
 .quote-form button[disabled]{opacity:.7;cursor:wait}
+
+/* ============ THANK YOU ============ */
+.thank-you-page{min-height:100vh;display:flex;align-items:center}
+.thank-you-wrap{width:100%}
+.thank-you-card{
+  max-width:720px;margin:0 auto;
+  padding:clamp(2rem,4vw,3rem);
+  background:rgba(255,253,246,.06);
+  border:1px solid var(--border-dark);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-dark);
+}
 
 /* ============ FAQ ============ */
 .faq-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
