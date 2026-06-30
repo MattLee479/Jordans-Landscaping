@@ -350,6 +350,53 @@ main{padding-top:var(--mobile-header-offset)}
   box-shadow:var(--shadow-dark);
   display:grid;gap:1rem;
 }
+.quote-card{
+  align-content:start;
+}
+.quote-card-title{
+  color:var(--forest-950);
+  line-height:1.02;
+}
+.quote-card-copy,
+.quote-help{
+  margin:0;
+  color:var(--text-muted);
+  font-size:.98rem;
+}
+.quote-list{
+  display:grid;
+  gap:.7rem;
+  margin:0;
+}
+.quote-list li{
+  position:relative;
+  padding-left:1.5rem;
+  color:var(--forest-900);
+  font-weight:600;
+}
+.quote-list li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.55rem;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--leaf-500);
+  box-shadow:0 0 0 5px rgba(127,166,106,.16);
+}
+.quote-email-btn{
+  margin-top:.25rem;
+}
+.quote-email-link{
+  width:fit-content;
+  font-weight:800;
+  color:var(--forest-800);
+  word-break:break-word;
+}
+.quote-email-link:hover{
+  color:var(--moss-600);
+}
 .field{display:flex;flex-direction:column;gap:.4rem}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:520px){.field-row{grid-template-columns:1fr}}
@@ -494,6 +541,21 @@ img,svg{max-width:100%;height:auto}
   .band-inner .btn-primary{width:100%}
   .landlords-text{padding:2rem 1.5rem}
   .landlords-img{min-height:220px}
+  .quote-grid > .reveal{
+    text-align:center;
+  }
+  .quote-grid .phone-cta{
+    margin-inline:auto;
+  }
+  .quote-card{text-align:center}
+  .quote-list li{padding-left:0}
+  .quote-list li::before{
+    position:static;
+    display:inline-block;
+    margin-right:.55rem;
+    vertical-align:middle;
+  }
+  .quote-email-link{width:100%}
   .footer-grid{gap:var(--space-5);padding-bottom:var(--space-5);text-align:center}
   .footer-grid > div{display:flex;flex-direction:column;align-items:center}
   .footer p{margin-inline:auto}

@@ -418,42 +418,26 @@
       </a>
     </div>
 
-    <form class="quote-form reveal" id="quoteForm" action="https://formsubmit.co/treetopslandscapes@yahoo.com" method="POST" novalidate>
-      <input type="hidden" name="_subject" value="New Website Enquiry">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://www.jordanstreecare.co.uk/thank-you.html">
-      <div class="field">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" required autocomplete="name">
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="phone">Phone number</label>
-          <input id="phone" name="phone" type="tel" required autocomplete="tel">
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="e.g. jordansmith@email.com" required autocomplete="email">
-        </div>
-      </div>
-      <div class="field">
-        <label for="location">Location</label>
-        <input id="location" name="location" type="text" placeholder="e.g. Glasgow G12" required>
-      </div>
-      <div class="field">
-        <label for="service">Service needed</label>
-        <input id="service" name="service" type="text" placeholder="e.g. Hedge trimming and garden tidy-up..." required>
-      </div>
-      <div class="field">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="4" placeholder="Tell us a little about the job. Photos help us quote faster &mdash; please send them when you get our reply."></textarea>
-      </div>
-      <button type="submit" class="btn-primary btn-block">
-        Send Quote Request
+    <div class="quote-form quote-card reveal">
+      <span class="eyebrow">Email Quote Request</span>
+      <h3 class="quote-card-title">Open your email app and send the details directly.</h3>
+      <p class="quote-card-copy">Use the button below to email for a quote.</p>
+      <ul class="quote-list" aria-label="What to include in your email">
+        <li>Your name and phone number</li>
+        <li>Your location and the work needed</li>
+        <li>Any extra details that help with the quote</li>
+        <li>Photos if you have them ready to send</li>
+      </ul>
+      <a
+        href="mailto:treetopslandscapes@yahoo.com?subject=Quote%20Request%20from%20Jordan%27s%20Tree%20Care%20Website&body=Hi%2C%0D%0A%0D%0AName%3A%0D%0APhone%20number%3A%0D%0ALocation%3A%0D%0AService%20needed%3A%0D%0A%0D%0AMessage%3A%0D%0A"
+        class="btn-primary btn-block quote-email-btn"
+      >
+        Email for a Quote
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-      </button>
-      <p class="form-note" id="formNote" role="status"></p>
-    </form>
+      </a>
+      <a href="mailto:treetopslandscapes@yahoo.com" class="quote-email-link">treetopslandscapes@yahoo.com</a>
+      <p class="quote-help">If nothing opens when you tap the button, you can email directly using the address above.</p>
+    </div>
   </div>
 </section>
 
